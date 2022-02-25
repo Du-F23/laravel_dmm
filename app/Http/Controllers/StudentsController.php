@@ -132,20 +132,34 @@ class StudentsController extends Controller
         ]);
 
 
-        if ($request->file('photo') != '') {
-            $file = $request->file('photo');
+        if ($request->file('photo1') != '') {
+            $file = $request->file('photo1');
             $foto = $file->getClientOriginalName();
             $date = date('Ymd_His_');
             $foto2 = $date . $foto;
-            \Storage::disk('local')->put($foto2, \File::get($file));
+            Storage::disk('local')->put($foto2, File::get($file));
         } else {
             $foto2 = "Red_Bull_2022.jpg";
         }
-        //dd($request->all());
+        //dd($request);
 
-        $student=Students::findOrFail($id);
-        $student->photo = $foto2;
-        $student->save();
+        //$student=Students::findOrFail($id);
+        $query = Students::findOrFail($id);
+        $query->matricula = $request->matricula;
+        $query->name = trim($request->name);
+        $query->app = trim($request->app);
+        $query->apm = trim($request->apm);
+        $query->fn = $request->fn;
+        $query->gen = $request->gen;
+        $query->email = trim($request->email);
+        $query->password = $request->password;
+        $query->photo = $foto2;
+        $query->id_grupo = $request->id_grupo;
+       // dd($request);
+        
+        $query->save();
+
+       
         //$student->update($request->all());    
         return redirect()->route('students.index',['id'=>$id]);
 

@@ -48,7 +48,7 @@
                     <div class="card-body px-0 pb-2">
                         <div class="table-responsive p-0">
                             <div class="container">
-                                <form action="{{route('students.update', ['id'=>$student->id_student])}}" method="POST">
+                                <form action="{{route('students.update', ['id'=>$student->id_student])}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
 
@@ -114,10 +114,10 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Foto:</label>
-                <input type="file" class="form-control" name="photo">
+                <input type="file" class="form-control" name="photo1">
                 <br/>
                 <label>Foto actual:</label>
-                <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled value="{{$student->photo}}" name="foto2">
+                <span class="" type="text" placeholder="disabled input" aria-label="disabled input example" disabled name=""> {{$student->photo}} </span>
             </div>
             <div class="col-sm-7">
             <label class="form-label">Grupo:</label>
