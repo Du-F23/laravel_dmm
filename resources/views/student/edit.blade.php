@@ -114,10 +114,10 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Foto:</label>
-                <input type="file" class="form-control" name="photo1">
+                <input type="file" class="form-control" name="photo">
                 <br/>
                 <label>Foto actual:</label>
-                <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled value="{{$student->photo}}">
+                <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled value="{{$student->photo}}" name="foto2">
             </div>
             <div class="col-sm-7">
             <label class="form-label">Grupo:</label>

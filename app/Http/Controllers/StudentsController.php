@@ -67,7 +67,7 @@ class StudentsController extends Controller
             $foto2 = $date . $foto;
             Storage::disk('local')->put($foto2, File::get($file));
         } else {
-            $foto2 = "uno.png";
+            $foto2 = "Red_Bull_2022.jpg";
         }
 
         $query = Students::create(array(
@@ -132,19 +132,22 @@ class StudentsController extends Controller
         ]);
 
 
-        if ($request->file('photo1') != '') {
-            $file = $request->file('photo1');
+        if ($request->file('photo') != '') {
+            $file = $request->file('photo');
             $foto = $file->getClientOriginalName();
             $date = date('Ymd_His_');
             $foto2 = $date . $foto;
-            Storage::disk('local')->put($foto2, File::get($file));
+            \Storage::disk('local')->put($foto2, \File::get($file));
         } else {
-            $foto2 = "uno.png";
+            $foto2 = "Red_Bull_2022.jpg";
         }
-        
+        //dd($request->all());
+
         $student=Students::findOrFail($id);
-        $student->update($request->all());    
-        return redirect()->route('students.index');
+        $student->photo = $foto2;
+        $student->save();
+        //$student->update($request->all());    
+        return redirect()->route('students.index',['id'=>$id]);
 
     }
 
