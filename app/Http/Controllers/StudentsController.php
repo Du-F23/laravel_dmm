@@ -17,16 +17,48 @@ class StudentsController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * 
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = Students::all();
-        $consult = DB::table('students')->get();
-        $query = DB::select('SELECT * FROM students');
+
+        if($request->buscar != ''){
+            $students= Students::Buscar($request)
+            ->orderBy('id_student')
+            ->paginate(10);
+        }else{
+            if($request->id_grupo > "0"){
+                $students= Students::Grupo($request)
+                ->orderBy('id_student')
+                ->paginate(10);
+            }
+            else{
+                $students= Students::paginate(10);
+            }
+        }
+
+        // $students = Students::all();
+        // $consult = DB::table('students')->get();
+        // $query = DB::select('SELECT * FROM students');
+
+
+        // if($request->id_grupo > '0')
+        // {
+        //     $students = Students::Group($request->get('id_grupo'))->orderBy('id_student')->get();
+        // }
+        // else
+        // {
+        //     $students = Students::all();
+        // }
+       
+        $groups = Group::all();    
+
 
         return view('student.index')->with('students', $students)
-                                    ->with('consult', $consult)
-                                    ->with('query', $query);
+                                    ->with('groups', $groups);
+        //                             ->with('consult', $consult)
+        //                             ->with('query', $query);
     }
 
     /**

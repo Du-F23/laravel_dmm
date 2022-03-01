@@ -9,7 +9,7 @@
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3">Lista De Productos</h6>
                 <div class="float-end">
-                <a href="/product/add">
+                <a href="/students/add">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Agregar">
                       <i class="fas fa-plus-circle"></i>
                     </button>

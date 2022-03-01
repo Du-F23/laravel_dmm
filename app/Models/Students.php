@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Students extends Model
 {
@@ -23,4 +24,27 @@ class Students extends Model
         'photo',
         'id_grupo',
     ];
+
+
+    //Funcion para obtener el nombre del grupo
+    public function scopeBuscar($query, $request){
+        if($request->buscar && $request->id_grupo){
+            $query->where(DB::raw("CONCAT(app, ' ', apm, ' ', name)"), "LIKE", '%'.$request->buscar. '%')
+            ->where('id_grupo', $request->id_grupo);
+            }
+            else{
+            $query->where(DB::raw("CONCAT(app, ' ', apm, ' ', name)"), "LIKE", '%'.$request->buscar. '%');
+                }
+    }
+
+    public function scopeGrupo($query, $request){
+        if($request->id_grupo){
+            $query->where('id_grupo', $request->id_grupo);
+        }
+    }
 }
+
+
+
+
+ 
