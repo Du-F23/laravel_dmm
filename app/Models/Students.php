@@ -42,6 +42,8 @@ class Students extends Model
             $query->where('id_grupo', $request->id_grupos);
         }
     }
+
+    
 }
 
 

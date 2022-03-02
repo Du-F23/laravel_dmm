@@ -51,8 +51,8 @@ class StudentsController extends Controller
         // {
         //     $students = Students::all();
         // }
-       
-        $groups = Group::all();    
+        $groups=Group::select('id_groups', 'name')->orderBy('name')->get();
+        //$groups = Group::all();    
 
 
         return view('student.index')->with('students', $students)
