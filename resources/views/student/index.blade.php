@@ -19,7 +19,7 @@
                     
                     </div>
                 </div>
-                <form action="{{ route('students.index') }}" name="filtros" method="get">
+                <form action="{{ route('students.index') }}" name="filtros" method="get"  enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <!-- token  -->
                         <div class="mb-3">
@@ -27,9 +27,9 @@
                             <input type="text" class="form-control" name="buscar" placeholder="Buscar...">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label"></label>
-                            <select class="form-control" name="id_grupo">
-                                <option value="0">Seleccione un grupo</option>
+                            <label class="form-label">Grupo </label>
+                            <select class="form-control" name="id_grupos">
+                                <option value="0">Selecciona un grupo</option>
                                 @foreach ($groups as $grupo)
                                 <option value="{{ $grupo->id_grupo }}">{{ $grupo->name }}</option>
                                 @endforeach
@@ -83,9 +83,10 @@
                             </tr>
                         @endforeach
                     </tbody>
-
                 </table>
-
+                <div class="float-end">
+                    {{ $students->links() }}
+                </div>        
             </div>
         </div>
         @endsection

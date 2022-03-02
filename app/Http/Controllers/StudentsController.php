@@ -28,7 +28,7 @@ class StudentsController extends Controller
             ->orderBy('id_student')
             ->paginate(10);
         }else{
-            if($request->id_grupo > "0"){
+            if($request->id_grupo > '0'){
                 $students= Students::Grupo($request)
                 ->orderBy('id_student')
                 ->paginate(10);
