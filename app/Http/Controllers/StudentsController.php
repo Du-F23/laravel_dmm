@@ -30,11 +30,16 @@ class StudentsController extends Controller
         }else{
             if($request->id_grupo > '0'){
                 $students= Students::Grupo($request)
-                ->orderBy('id_student')
+                ->orderBy('id_grupo')
                 ->paginate(10);
             }
             else{
                 $students= Students::paginate(10);
+            }
+            if($request->gen > 'Masculino'){
+                $students= Students::Genero($request)
+                ->orderBy('id_student')
+                ->paginate(10);
             }
         }
 
@@ -51,8 +56,8 @@ class StudentsController extends Controller
         // {
         //     $students = Students::all();
         // }
-        $groups=Group::select('id_groups', 'name')->orderBy('name')->get();
-        //$groups = Group::all();    
+        //$groups=Group::select('id_groups', 'name')->orderBy('name')->get();
+        $groups = Group::all();    
 
 
         return view('student.index')->with('students', $students)

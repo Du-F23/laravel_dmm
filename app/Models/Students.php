@@ -38,12 +38,17 @@ class Students extends Model
     }
 
     public function scopeGrupo($query, $request){
-        if($request->id_grupos){
-            $query->where('id_grupo', $request->id_grupos);
-        }
-    }
+        if($request->id_grupo){
+            $query->where('id_grupo', $request->id_grupo);
+            }
+            }
 
-    
+    //Funcion para obtener el genero
+    public function scopeGenero($query, $request){
+        if($request->Masculino){
+            $query->where('gen', $request->Masculino);
+            }
+            }     
 }
 
 

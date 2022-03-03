@@ -28,13 +28,24 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Grupo </label>
-                            <select class="form-control" name="id_grupos">
+                            <select class="form-control" name="id_groups">
                                 <option value="0">Selecciona un grupo</option>
                                 @foreach ($groups as $grupo)
                                 <option value="{{ $grupo->id_groups }}">{{ $grupo->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        <div class="mb-3">
+                <label class="form-label">Género</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="gen" value="Masculino" checked>
+                    <label class="form-cheked-label">Masculino</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="gen" value="Femenino">
+                    <label class="form-cheked-label">Femenino</label>
+                </div>
+            </div>
                         <div class="d-grip gap-2">
                             <input type="submit" value="Buscar" class="btn btn-primary">
                         </div>
@@ -47,6 +58,7 @@
                             <th>Nombre</th>
                             <th>Genero</th>
                             <th>Fecha Nacimiento</th>
+                            <th>Grupo</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
@@ -62,6 +74,7 @@
                                 </td>
                                 <td>{{ $studentss->gen }}</td>
                                 <td>{{ $studentss->fn }}</td>
+                                <td value="{{ $studentss->id_grupo }}">{{ $studentss->id_grupo }}</td>
                                 <td>
                                     <a href="{{ route('students.show') }}"><button type='button'
                                             class="btn btn-primary"><i class="far fa-eye"></i></button></a>
